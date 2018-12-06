@@ -3,15 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="19620af8-5235-4244-9132-15f0fa66feb8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GROLO_localization.py" beforeDir="false" afterPath="$PROJECT_DIR$/GROLO_localization.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/GROLO_result.npy" beforeDir="false" afterPath="$PROJECT_DIR$/data/GROLO_result.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/beacon_nodes.npy" beforeDir="false" afterPath="$PROJECT_DIR$/data/beacon_nodes.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/dv_distance_result.npy" beforeDir="false" afterPath="$PROJECT_DIR$/data/dv_distance_result.npy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/gradient_descent_result.npy" beforeDir="false" afterPath="$PROJECT_DIR$/data/gradient_descent_result.npy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/formationControl.py" beforeDir="false" afterPath="$PROJECT_DIR$/formationControl.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/initPos.py" beforeDir="false" afterPath="$PROJECT_DIR$/initPos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/robotClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/robotClass.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -61,8 +54,8 @@
       <file leaf-file-name="formationControl.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/formationControl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="557" column="17" selection-start-line="557" selection-start-column="17" selection-end-line="557" selection-end-column="17" />
+            <state relative-caret-position="377">
+              <caret line="518" column="24" selection-start-line="518" selection-start-column="24" selection-end-line="518" selection-end-column="24" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -73,8 +66,8 @@
       <file leaf-file-name="GROLO_localization.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GROLO_localization.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="78" column="53" lean-forward="true" selection-start-line="78" selection-start-column="53" selection-end-line="78" selection-end-column="53" />
+            <state relative-caret-position="237">
+              <caret line="119" column="57" lean-forward="true" selection-start-line="119" selection-start-column="57" selection-end-line="119" selection-end-column="57" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -131,8 +124,10 @@
       <find>point_curve</find>
       <find>come to calculate, cal_nodes</find>
       <find>show_old_new</find>
-      <find>print</find>
       <find>loss is</find>
+      <find>adjust_height</find>
+      <find>show</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -355,16 +350,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GROLO_localization.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="78" column="53" lean-forward="true" selection-start-line="78" selection-start-column="53" selection-end-line="78" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/robotClass.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2329">
@@ -402,10 +387,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/GROLO_localization.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="119" column="57" lean-forward="true" selection-start-line="119" selection-start-column="57" selection-end-line="119" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/formationControl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="557" column="17" selection-start-line="557" selection-start-column="17" selection-end-line="557" selection-end-column="17" />
+        <state relative-caret-position="377">
+          <caret line="518" column="24" selection-start-line="518" selection-start-column="24" selection-end-line="518" selection-end-column="24" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>

@@ -81,6 +81,7 @@ def show_old_new(oldpoints, targetpoints):
     global times
     fig = plt.figure(10+times)
     oldpoints = np.array(oldpoints)
+    plt.title('blue:coord, red:position')
     plt.scatter(targetpoints[:, 0], targetpoints[:, 1], c='b')
     plt.scatter(oldpoints[:, 0], oldpoints[:, 1], c='r')
     for i in range(len(oldpoints)):
@@ -290,130 +291,6 @@ def debugRobot(robots, r, epoch, points):
 
 
 
-def formation_control_manyTimes(robots, points):
-    epochs = 500
-    global times, AdjustTime
-    velocity = 0.1
-    deltaH = 0.7
-    list_V = np.arange(0.1,0.5,0.01)
-    adjusttimelist = []
-    epochlist = []
-    for r in list_V:
-        velocity = r
-        AdjustTime = 0
-        list_points = []
-        initial(robots)
-        for i in range(len(points)):
-            robots[i].set_position([points[i][0], points[i][1]])
-        set_initial_height(robots)
-        set_neighbors(robots)
-        times = 0
-
-        for epoch in range(epochs):
-            times = times + 1
-            # if times == 120 or times == 121 or times == 122:
-            #     targetpoints = []
-            #     show2d(np.array(targetpoints), robots)
-            print('this is %d picture' % times)
-            targetpoints = []
-            oldpoints = []
-
-            for r in robots:
-                oldpoints.append(r.coord)
-                debugRobot(robots, r, epoch, points)
-            list_points.append(copy.deepcopy(oldpoints))
-            # move beacon
-            adjust_height(robots, deltaH, velocity, np.pi / 4)
-            for r in robots:
-                if r.isBeacon == True:
-                    tp = r.move(velocity, math.pi / 4)
-                    targetpoints.append(tp)
-                    set_neighbors(robots)
-            # te_calculate_parents(robots)
-
-
-
-            oldpoints = []
-            for r in robots:
-                oldpoints.append(r.coord)
-                debugRobot(robots, r, epoch, points)
-            list_points.append(copy.deepcopy(oldpoints))
-
-            # move non-beacon
-            adjust_height(robots, deltaH, velocity, np.pi / 4)
-            for r in robots:
-                if r.isBeacon == False:
-                    tp = r.move(velocity, math.pi / 4)
-                    targetpoints.append(tp)
-                    set_neighbors(robots)
-
-            # if distance(robots[Beacon_3id].coord,points[Beacon_3id,:]+30/np.sqrt(2)) < (deltaH):
-            if robots[Beacon_3id].coord[0]>points[Beacon_3id, 0] + 30/np.sqrt(2) and \
-                    robots[Beacon_3id].coord[1]>points[Beacon_3id,1] + 30/np.sqrt(2):
-                adjusttimelist.append(AdjustTime)
-                epochlist.append(epoch)
-                print('you get the finish condition adjustionlist epochlist is',adjusttimelist,epochlist)
-                break
-
-    FinalList = np.array([list_V,adjusttimelist,epochlist]).reshape(3,(len(list_V)))
-    print('FinalLIst is ', FinalList)
-    np.savetxt('adjustList.npy', FinalList)
-
-    anim(list_points, points)
-    point_curve(list_points, points)
-    print('AdjustTime is', AdjustTime)
-    print('epoch times is', epoch)
-    plt.show()
-
-
-def formation_control2(robots, points):
-    epochs = 500
-    global times, AdjustTime
-    velocity = 0.3
-    deltaH = 0.7
-    list_points = []
-    for epoch in range(epochs):
-        times = times + 1
-        # if times == 120 or times == 121 or times == 122:
-        #     targetpoints = []
-        #     show2d(np.array(targetpoints), robots)
-        print('this is %d picture' % times)
-        targetpoints = []
-
-        # move beacon
-        adjust_height(robots, deltaH, velocity, np.pi / 4)
-        for r in robots:
-            if r.isBeacon == True:
-                tp = r.move(velocity, math.pi / 4)
-                targetpoints.append(tp)
-                set_neighbors(robots)
-
-        oldpoints = []
-        for r in robots:
-            oldpoints.append(r.coord)
-            debugRobot(robots, r, epoch, points)
-        list_points.append(copy.deepcopy(oldpoints))
-
-        # move non-beacon
-        adjust_height(robots, deltaH, velocity, np.pi / 4)
-        for r in robots:
-            if r.isBeacon == False:
-                tp = r.move(velocity, math.pi / 4)
-                targetpoints.append(tp)
-                set_neighbors(robots)
-
-        # if distance(robots[Beacon_3id].coord,points[Beacon_3id,:]+30/np.sqrt(2)) < (deltaH):
-        if robots[Beacon_3id].coord[0]>points[Beacon_3id, 0] + 30/np.sqrt(2) and \
-                robots[Beacon_3id].coord[1]>points[Beacon_3id,1] + 30/np.sqrt(2):
-            break
-
-    anim(list_points, points)
-    point_curve(list_points, points)
-    print('AdjustTime is', AdjustTime)
-    print('epoch times is', epoch)
-    plt.show()
-
-
 robot_Num = 0
 beacon_Num = 0
 communication_distance = 0
@@ -553,7 +430,7 @@ def main():
     print('grolo position', GROLO_position)
 
     # formation control
-    epochs = 5
+    epochs = 10
     global times, AdjustTime
     velocity = 1.5
     direct = np.pi / 4
@@ -575,9 +452,6 @@ def main():
 
         # adjust once
         adjust_height(points, robots, deltaH, velocity, np.pi / 4)
-        # # GROLO_LOCALIZATION
-        # localization_gradient_descent(robots, psolver, epochs=2)
-        # GROLO_position = localization_GROLO(robots, robot_Num - beacon_Num - 1)
         oldcoords = []
         for r in robots:
             oldcoords.append(r.coord)
@@ -586,7 +460,6 @@ def main():
         # print('oldcoord is ', oldcoords)
         # print('points is ', points)
         # show_old_new(oldcoords, points)
-
 
 
         # move beacon
@@ -604,9 +477,10 @@ def main():
         # gradient_descent in beacon
         for r in robots:
             r.isBeacon = not r.isBeacon
-        # localization_gradient_descent(robots, psolver, epochs=20)
-        # GROLO_position = localization_GROLO(robots, 2)
-        oldcoords = []   #  jkj
+        localization_gradient_descent(robots, psolver, epochs=20)
+        for r in robots:
+            r.isBeacon = not r.isBeacon
+        oldcoords = []
         for r in robots:
             oldcoords.append(r.coord)
         list_coords.append(copy.deepcopy(oldcoords))
@@ -614,25 +488,25 @@ def main():
         print('oldcoord is ', oldcoords)
         print('points is ', points)
         show_old_new(oldcoords, points)
-        plt.show()
-        assert False
 
         # move non-beacon
         adjust_height(points, robots, deltaH, velocity, np.pi / 4)
-        # GROLO_LOCALIZATION
-        setInitial_by_dvdistance(robots)
-        localization_gradient_descent(robots, psolver, epochs=2)
-        GROLO_position = localization_GROLO(robots, robot_Num - beacon_Num - 1)
+
+        # save to list
         oldcoords = []
         for r in robots:
             oldcoords.append(r.coord)
         list_coords.append(copy.deepcopy(oldcoords))
         list_points.append(copy.deepcopy(points))
         show_old_new(oldcoords, points)
+        plt.show()
 
+
+        # move no beacon
         for r in robots:
             if r.isBeacon == False:
                 if r.move(velocity, direct):
+                    print('robot[{}] has move', r.id)
                     real_velocity = velocity + np.random.random() * (velocity * deltaV) * 2 - (velocity * deltaV)
                     real_direct = direct + np.random.random() * deltaD * 2 - deltaD
                     dx = real_velocity * np.cos(real_direct)
@@ -641,14 +515,18 @@ def main():
                     points[r.id][1] = points[r.id][1] + dy
                     initial_and_measured_neighbor(points, robots)
         # GROLO_LOCALIZATION
-        setInitial_by_dvdistance(robots)
-        localization_gradient_descent(robots, psolver, epochs=2)
-        GROLO_position = localization_GROLO(robots, robot_Num - beacon_Num - 1)
+        localization_gradient_descent(robots, psolver, epochs=20)
+        # GROLO_position = localization_GROLO(robots, robot_Num - beacon_Num - 1)
+        show_old_new(oldcoords, points)
+        plt.show()
+        assert False
+
         oldcoords = []
         for r in robots:
             oldcoords.append(r.coord)
         list_coords.append(copy.deepcopy(oldcoords))
         list_points.append(copy.deepcopy(points))
+
     anim(list_coords, list_points[0])
     point_curve(list_coords, list_points[0])
     plt.show()
