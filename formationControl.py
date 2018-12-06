@@ -606,7 +606,7 @@ def main():
             r.isBeacon = not r.isBeacon
         # localization_gradient_descent(robots, psolver, epochs=20)
         # GROLO_position = localization_GROLO(robots, 2)
-        oldcoords = []
+        oldcoords = []   #  jkj
         for r in robots:
             oldcoords.append(r.coord)
         list_coords.append(copy.deepcopy(oldcoords))
