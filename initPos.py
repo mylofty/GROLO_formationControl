@@ -9,8 +9,8 @@ from config import *
 point_list = np.loadtxt(os.path.join(folder, beacon_node_filename))
 Beacon = np.array((point_list[0:len(point_list)-1]), dtype=int)
 Distance = point_list[len(point_list)-1]
-print('Communication Distance is ', Distance)
-print('Beacon is ', Beacon)
+# print('Communication Distance is ', Distance)
+# print('Beacon is ', Beacon)
 
 
 class Robot:
@@ -38,10 +38,10 @@ def dv_distance():
         for j in range(i + 1, node_num):
             tempDistance = np.sqrt(
                 (robot[i].posx - robot[j].posx) ** 2 + (robot[i].posy - robot[j].posy) ** 2)
-            print('real tempDistance: %d' %i, tempDistance)
+            # print('real tempDistance: %d' %i, tempDistance)
             np.random.seed(12345)
             # tempDistance = tempDistance + tempDistance * (np.random.random() * 0.02 - 0.01)  #是否加噪声
-            print('get tempDistance:', tempDistance)
+            # print('get tempDistance:', tempDistance)
 
             if (tempDistance < Distance):
                 robot[i].myNeighbor.append([j, tempDistance])
@@ -56,7 +56,7 @@ def dv_distance():
         for j in range(len(robot[i].myNeighbor)):
             nei_id = robot[i].myNeighbor[j][0]
             nei_distance = robot[i].myNeighbor[j][1]
-            print('nei_distance', i, nei_id, nei_distance)
+            # print('nei_distance', i, nei_id, nei_distance)
             robot[i].dv_distance[nei_id] = nei_distance
 
     # dv_distance
@@ -70,7 +70,7 @@ def dv_distance():
     for i in range(node_num):
         for j in range(node_num):
             print('%.3f' % robot[i].dv_distance[j], end='   ')
-        print()
+        # print()
     coordlist = []
     for index in range(node_num):
         if index in Beacon:
@@ -93,10 +93,10 @@ def dv_distance():
             dis3 = beacon_sort[2, 1]
             b3x = robot[int(beacon_sort[2, 0])].posx
             b3y = robot[int(beacon_sort[2, 0])].posy
-            if index == 0:
-                print('distance with beacon1, beacon2, beacon3: ', dis1, dis2, dis3)
+            # if index == 0:
+            #     print('distance with beacon1, beacon2, beacon3: ', dis1, dis2, dis3)
             if dis1 > 900 or dis2 > 900 or dis3 > 900:
-                print('node %d can not connect with beacon' % index)
+                # print('node %d can not connect with beacon' % index)
                 sol = [-1, -1.1]
             else:
                 def function(r):
@@ -111,7 +111,7 @@ def dv_distance():
                 sol = fsolve(function, np.array([1, 1]), xtol=1e-5)
 
             coordlist.append(sol)
-            print('sol', index, sol)
+            # print('sol', index, sol)
     # print(coordlist)
     np.savetxt(os.path.join(folder, dv_distance_result), coordlist)
     return coordlist

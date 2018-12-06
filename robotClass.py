@@ -27,7 +27,7 @@ class Robot(object):
         self.query2 = -1
 
         # formation control
-        self.real_position = []  # it is coord [dx, dy]
+        self.nei_pos = []
         self.initial_height = []
         self.height = []  # distance to the center point
         self.childid = []
@@ -48,14 +48,11 @@ class Robot(object):
     def get_coord(self):
         return self.coord
 
-    def get_real_position(self):
-        return self.real_position
+    def distance(self, coord1, coord2):
+        return np.sqrt((coord1[0] - coord2[0]) ** 2 + (coord1[1] - coord2[1]) ** 2)
 
     def set_coord(self, coord):
         self.coord = coord
-
-    def set_real_position(self, real_position):
-        self.real_position = real_position
 
     def distance_to(self, rid):
         for nei in self.myNeighbor:
@@ -74,7 +71,7 @@ class Robot(object):
         # print('distss ', dists)
         # print('origin coord', self.coord)
         coord, loss = psolver.solver(self.coord, neighbors, dists)
-        print('loss is ', loss)
+        # print('loss is ', loss)
         assert not math.isnan(loss)
         if not math.isnan(coord[0]):
             self.set_coord(coord)
@@ -86,10 +83,10 @@ class Robot(object):
         step = 1
         s_error = speed * deltaV
         d_error = deltaD
-        target_x = self.coord[0] + step * speed * np.cos(direct)
-        target_y = self.coord[1] + step * speed * np.sin(direct)
-        speed = speed + np.random.random() * s_error * 2 - s_error
-        direct = direct + np.random.random() * d_error * 2 - d_error
+        # target_x = self.coord[0] + step * speed * np.cos(direct)
+        # target_y = self.coord[1] + step * speed * np.sin(direct)
+        # speed = speed + np.random.random() * s_error * 2 - s_error
+        # direct = direct + np.random.random() * d_error * 2 - d_error
         length = step * speed
         dx = length * np.cos(direct)
         dy = length * np.sin(direct)
@@ -108,22 +105,23 @@ class Robot(object):
         # when the robot can move
         # theta(pi,p) < pi/2  ===>    dis(max_move(p), min_move(pi))<min_distance
         # theta(pi,p) < pi/2  ===>    dis(min_move(p), max_move(pi))<min_distance
-        for index in range(len(self.nei_pos)):
+        for index in range(len(self.nei_id)):
             for d in range(len(dx_list)):
                 if self.distance(self.nei_pos[index], np.array(self.coord) + np.array([dx_list[d], dy_list[d]])) < collision_distance:
-                    return [target_x, target_y]
+                    print('can not moving less than collision')
+                    return False
 
             # when theta < 0 and neighbor is robot's parents and child. cannot over than communication_distance
-            if(self.nei_id[index] == self.parent1id or self.nei_id[index] == self.parent2id
+            if(self.nei_id[index] == self.parent1 or self.nei_id[index] == self.parent2
                               or (self.nei_id[index] in self.childid)):
                 for d in range(len(dx_list)):
                     if self.distance(self.nei_pos[index],
                                      np.array(self.coord) + np.array([dx_list[d], dy_list[d]])) > allow_distance:
-                        return [target_x, target_y]
+                        return False
         self.coord = [self.coord[0]+dx, self.coord[1]+dy]
         self.isMove = True
         # return target position
-        return [target_x, target_y]
+        return True
 
     def show_loss_curve(self):
         plt.figure(10)

@@ -65,20 +65,20 @@ def setInitial_by_dvdistance(robots):
     dv_list = np.loadtxt(os.path.join(folder, dv_distance_result))
     for index in range(len(dv_list)):
         robots[index].set_coord([dv_list[index][0], dv_list[index][1]])
-        print('robot[{}] '.format(index), dv_list[index])
+        # print('robot[{}] '.format(index), dv_list[index])
 
 
 
 def localization_gradient_descent(robots, psolver, epochs=2):
     robot_num = len(robots)
     for epoch in range(epochs+1):
-        print("epoch %d:------------------------------------------------" % epoch)
+        # print("epoch %d:------------------------------------------------" % epoch)
         for rid in range(robot_num):
             nei_dis = [value for value in robots[rid].measured_distance.values()]
             nei_pos = [robots[key].get_coord() for key in robots[rid].measured_distance.keys()]
-            print('localization_ontime robot', rid)
+            # print('localization_ontime robot', rid)
             robots[rid].run(psolver, neighbors=nei_pos, dists=nei_dis)
-            print("robots[%d].coord: " % rid, robots[rid].get_coord())
+            # print("robots[%d].coord: " % rid, robots[rid].get_coord())
     # write to file gradient_descent_result.npy
     gd_list = []
     for r in robots:

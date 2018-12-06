@@ -16,7 +16,7 @@ GROLO_result = "GROLO_result.npy"
 
 # formation control
 # communication_distance = 6
-allow_distance = 4.1
+allow_distance = 20.5
 collision_distance = 0.5
 deltaV = 0.2
 deltaD = np.pi/12
