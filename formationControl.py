@@ -37,6 +37,27 @@ def initial(robots):
     robots[7].setParents(5, 3)
     robots[8].setParents(4, 6)
     robots[9].setParents(6, 8)
+    robots[0].setChild(2)
+    robots[0].setChild(3)
+    robots[1].setChild(2)
+    robots[1].setChild(4)
+    robots[2].setChild(4)
+    robots[2].setChild(5)
+    robots[3].setChild(5)
+    robots[3].setChild(7)
+    robots[4].setChild(8)
+    robots[4].setChild(6)
+    robots[5].setChild(7)
+    robots[5].setChild(10)
+    robots[6].setChild(8)
+    robots[6].setChild(9)
+    robots[7].setChild(10)
+    robots[8].setChild(9)
+    robots[8].setChild(10)
+    robots[9].setChild(10)
+    robots[10].setChild(7)
+    robots[10].setChild(8)
+    robots[10].setChild(9)
 
 
 def distance(coord1, coord2):
@@ -87,7 +108,7 @@ def show_old_new(oldpoints, targetpoints):
     for i in range(len(oldpoints)):
         plt.annotate(s=i, xy=(oldpoints[i, 0], oldpoints[i, 1]), xytext=(5, -5), textcoords='offset points')
         plt.annotate(s=i, xy=(targetpoints[i, 0], targetpoints[i, 1]), xytext=(-5, 5), textcoords='offset points')
-    plt.plot(50, 50, 'black')
+    plt.plot(15, 15, 'black')
     plt.plot(0, 0, 'black')
     times = times + 1
 
@@ -153,10 +174,10 @@ def show2d(targetpoints, robots):
 
 def anim(list_points, points):
     fig = plt.figure()
-    ax = plt.axes(xlim=(-2, 100), ylim=(-2, 100))
+    ax = plt.axes(xlim=(-2, 40), ylim=(-2, 40))
     length = len(list_points)
     new_points = np.array(list_points[0])
-    ax.scatter(new_points[:, 0]+50/np.sqrt(2), new_points[:, 1]+50/np.sqrt(2), c='r')
+    ax.scatter(new_points[:, 0]+30/np.sqrt(2), new_points[:, 1]+30/np.sqrt(2), c='r')
     scat = ax.scatter(new_points[:, 0], new_points[:, 1], c='r')
 
     def update(frame_number):
@@ -169,8 +190,8 @@ def anim(list_points, points):
         #     scattext[index].set_position((new_points[index][0], new_points[index][1]))
         return scat,
 
-    animate2 = animation.FuncAnimation(fig, update, frames=length, interval=500, blit=False)  # interval是每隔70毫秒更新一次，可以查看help
-    # animate2.save('circle_shrink.gif', writer='imagemagick', fps=3000)
+    animate2 = animation.FuncAnimation(fig, update, frames=length, interval=20, blit=False)  # interval是每隔70毫秒更新一次，可以查看help
+    animate2.save('circle_shrink.gif', writer='imagemagick', fps=300)
     plt.show()
 
 
@@ -329,18 +350,16 @@ def initial_and_measured_neighbor(points, robots):
             np.random.seed(12345)
             tempDistance = np.sqrt((points[i][0] - points[j][0]) ** 2
                                    + (points[i][1] - points[j][1]) ** 2)
-            # tempDistance = tempDistance + tempDistance * (np.random.random() * 0.02 - 0.01)  # 是否加噪声
+            tempDistance = tempDistance + tempDistance * (np.random.random() * 0.02 - 0.01)  # 是否加噪声
             if tempDistance < communication_distance:
-                robots[i].nei_pos.append(robots[j].coord)
-                robots[j].nei_pos.append(robots[i].coord)
                 robots[i].myNeighbor.append([j, tempDistance])
                 robots[j].myNeighbor.append([i, tempDistance])
     for r in robots:
         r.myNeighbor = sorted(r.myNeighbor, key=cmp_by_value)
-        r.nei_id = []
         for nei in r.myNeighbor:
             nid = nei[0]
             r.nei_id.append(nid)
+            r.nei_pos.append(robots[nid].get_coord())
             r.measured_distance[nid] = nei[1]
 
 
@@ -376,6 +395,27 @@ def create_formation_topology():
     robots[7].set_parents(5, 3)
     robots[8].set_parents(4, 6)
     robots[9].set_parents(6, 8)
+    robots[0].set_child(2)
+    robots[0].set_child(3)
+    robots[1].set_child(2)
+    robots[1].set_child(4)
+    robots[2].set_child(4)
+    robots[2].set_child(5)
+    robots[3].set_child(5)
+    robots[3].set_child(7)
+    robots[4].set_child(8)
+    robots[4].set_child(6)
+    robots[5].set_child(7)
+    robots[5].set_child(10)
+    robots[6].set_child(8)
+    robots[6].set_child(9)
+    robots[7].set_child(10)
+    robots[8].set_child(9)
+    robots[8].set_child(10)
+    robots[9].set_child(10)
+    robots[10].set_child(7)
+    robots[10].set_child(8)
+    robots[10].set_child(9)
     return points, robots
 
 
@@ -417,6 +457,7 @@ def adjust_height(points, robots, delta_H, velocity, direct):
                 break
 
 def main():
+    np.random.seed(12345)
     sess = tf.Session()
     psolver = PositionSolver(sess, 50, 0.0005)
     points, robots = create_formation_topology()
@@ -430,9 +471,9 @@ def main():
     print('grolo position', GROLO_position)
 
     # formation control
-    epochs = 10
+    epochs = 150
     global times, AdjustTime
-    velocity = 1.5
+    velocity = 0.3
     direct = np.pi / 4
     deltaH = 0.7
     list_points = []
@@ -446,27 +487,20 @@ def main():
             oldcoords.append(r.coord)
         list_coords.append(copy.deepcopy(oldcoords))
         list_points.append(copy.deepcopy(points))
-        # print('oldcoord is ', oldcoords)
-        # print('points is ', points)
-        # show_old_new(oldcoords, points)
 
-        # adjust once
+        # adjust before moving beacon
         adjust_height(points, robots, deltaH, velocity, np.pi / 4)
         oldcoords = []
         for r in robots:
             oldcoords.append(r.coord)
         list_coords.append(copy.deepcopy(oldcoords))
         list_points.append(copy.deepcopy(points))
-        # print('oldcoord is ', oldcoords)
-        # print('points is ', points)
-        # show_old_new(oldcoords, points)
-
 
         # move beacon
         for r in robots:
             if r.isBeacon == True:
                 if r.move(velocity, direct):
-                    print('robot[{}] can moving'.format(r.id))
+                    print("robot[{}] can moving".format(r.id))
                     real_velocity = velocity + np.random.random() * (velocity * deltaV) * 2 - (velocity * deltaV)
                     real_direct = direct + np.random.random() * deltaD * 2 - deltaD
                     dx = real_velocity * np.cos(real_direct)
@@ -485,11 +519,12 @@ def main():
             oldcoords.append(r.coord)
         list_coords.append(copy.deepcopy(oldcoords))
         list_points.append(copy.deepcopy(points))
-        print('oldcoord is ', oldcoords)
-        print('points is ', points)
-        show_old_new(oldcoords, points)
+        # print('oldcoord is ', oldcoords)
+        # print('points is ', points)
+        # show_old_new(oldcoords, points)
 
-        # move non-beacon
+
+        # adjust before move non-beacon
         adjust_height(points, robots, deltaH, velocity, np.pi / 4)
 
         # save to list
@@ -498,9 +533,7 @@ def main():
             oldcoords.append(r.coord)
         list_coords.append(copy.deepcopy(oldcoords))
         list_points.append(copy.deepcopy(points))
-        show_old_new(oldcoords, points)
-        plt.show()
-
+        # show_old_new(oldcoords, points)
 
         # move no beacon
         for r in robots:
@@ -515,20 +548,30 @@ def main():
                     points[r.id][1] = points[r.id][1] + dy
                     initial_and_measured_neighbor(points, robots)
         # GROLO_LOCALIZATION
-        localization_gradient_descent(robots, psolver, epochs=20)
-        # GROLO_position = localization_GROLO(robots, robot_Num - beacon_Num - 1)
-        show_old_new(oldcoords, points)
-        plt.show()
-        assert False
-
+        localization_gradient_descent(robots, psolver, epochs=10)
+        GROLO_position = localization_GROLO(robots, robot_Num - beacon_Num - 1)
+        # save to list
         oldcoords = []
         for r in robots:
             oldcoords.append(r.coord)
         list_coords.append(copy.deepcopy(oldcoords))
         list_points.append(copy.deepcopy(points))
+        if epoch == epochs-1:
+            show_old_new(oldcoords, points)
+        # if distance(robots[Beacon_3id].coord,points[Beacon_3id,:]+30/np.sqrt(2)) < (deltaH):
+        if robots[Beacon_3id].coord[0]>points[Beacon_3id, 0] + 30/np.sqrt(2) or \
+                robots[Beacon_3id].coord[1]>points[Beacon_3id,1] + 30/np.sqrt(2):
+            show_old_new(oldcoords, points)
+            break
+
+    # save the move information
+    np.savetxt("error_1 percent_list_points.npy", list_points)
+    np.savetxt("error_1 percent_list_coords.npy", list_coords)
+
 
     anim(list_coords, list_points[0])
     point_curve(list_coords, list_points[0])
+    point_curve(list_points, list_points[0])
     plt.show()
 
 

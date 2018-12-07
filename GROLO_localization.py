@@ -116,7 +116,7 @@ def localization_GROLO(robots, localization_Nodes):
                         (x - p1x) ** 2 + (y - p1y) ** 2 - dis1 ** 2,
                         (x - p2x) ** 2 + (y - p2y) ** 2 - dis2 ** 2]
                 sol = np.real(fsolve(my_solve, np.array([ix, iy]), xtol=1e-3))
-                print('fsolve index ',index,sol)
+                # print('fsolve index ',index,sol)
                 robots[index].set_coord([sol[0], sol[1]])
                 robots[index].isFinalPos = True
                 cal_nodes = cal_nodes + 1

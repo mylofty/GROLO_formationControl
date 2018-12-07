@@ -103,20 +103,25 @@ class Robot(object):
             dy_list.append(min_dy + (max_dy - min_dy) * x / 10)
 
         # when the robot can move
-        # theta(pi,p) < pi/2  ===>    dis(max_move(p), min_move(pi))<min_distance
-        # theta(pi,p) < pi/2  ===>    dis(min_move(p), max_move(pi))<min_distance
+        if self.id == 3:
+            print('self.nei_id is', self.nei_id)
+            print('self.nei_pos is', self.nei_pos)
+
+
+
         for index in range(len(self.nei_id)):
             for d in range(len(dx_list)):
                 if self.distance(self.nei_pos[index], np.array(self.coord) + np.array([dx_list[d], dy_list[d]])) < collision_distance:
-                    print('can not moving less than collision')
+                    print('robot[{}] can not moving less than collision with robot[{}]'.format(self.id, self.nei_id[index]))
                     return False
 
-            # when theta < 0 and neighbor is robot's parents and child. cannot over than communication_distance
+            # when neighbor is robot's parents and child. cannot over than communication_distance
             if(self.nei_id[index] == self.parent1 or self.nei_id[index] == self.parent2
                               or (self.nei_id[index] in self.childid)):
                 for d in range(len(dx_list)):
                     if self.distance(self.nei_pos[index],
                                      np.array(self.coord) + np.array([dx_list[d], dy_list[d]])) > allow_distance:
+                        print('robot[{}] can not moving more than allow_distance with robot[{}]'.format(self.id, self.nei_id[index]))
                         return False
         self.coord = [self.coord[0]+dx, self.coord[1]+dy]
         self.isMove = True

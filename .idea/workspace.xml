@@ -3,8 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="19620af8-5235-4244-9132-15f0fa66feb8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GROLO_localization.py" beforeDir="false" afterPath="$PROJECT_DIR$/GROLO_localization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/GROLO_result.npy" beforeDir="false" afterPath="$PROJECT_DIR$/data/GROLO_result.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/beacon_nodes.npy" beforeDir="false" afterPath="$PROJECT_DIR$/data/beacon_nodes.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/dv_distance_result.npy" beforeDir="false" afterPath="$PROJECT_DIR$/data/dv_distance_result.npy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/gradient_descent_result.npy" beforeDir="false" afterPath="$PROJECT_DIR$/data/gradient_descent_result.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/random_nodes.npy" beforeDir="false" afterPath="$PROJECT_DIR$/data/random_nodes.npy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/formationControl.py" beforeDir="false" afterPath="$PROJECT_DIR$/formationControl.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/init_final.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/init_final.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/robotClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/robotClass.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,8 +26,8 @@
       <file leaf-file-name="robotClass.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robotClass.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2329">
-              <caret line="108" column="12" selection-start-line="108" selection-start-column="12" selection-end-line="108" selection-end-column="12" />
+            <state relative-caret-position="2376">
+              <caret line="108" selection-start-line="108" selection-end-line="108" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -30,8 +38,8 @@
       <file leaf-file-name="GridentDescentPy.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GridentDescentPy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-744">
-              <caret line="7" column="20" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="20" />
+            <state relative-caret-position="114">
+              <caret line="46" column="40" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -43,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/config.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="396">
-              <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -54,8 +62,8 @@
       <file leaf-file-name="formationControl.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/formationControl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="518" column="24" selection-start-line="518" selection-start-column="24" selection-end-line="518" selection-end-column="24" />
+            <state relative-caret-position="440">
+              <caret line="196" lean-forward="true" selection-start-line="196" selection-end-line="196" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -63,11 +71,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="beacon_nodes.npy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/beacon_nodes.npy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="GROLO_localization.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GROLO_localization.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="119" column="57" lean-forward="true" selection-start-line="119" selection-start-column="57" selection-end-line="119" selection-end-column="57" />
+            <state relative-caret-position="198">
+              <caret line="119" column="48" selection-start-line="119" selection-start-column="48" selection-end-line="119" selection-end-column="48" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -88,7 +105,7 @@
         <entry file="file://$PROJECT_DIR$/visualization.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="418">
-              <caret line="19" column="12" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+              <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -124,10 +141,12 @@
       <find>point_curve</find>
       <find>come to calculate, cal_nodes</find>
       <find>show_old_new</find>
-      <find>loss is</find>
       <find>adjust_height</find>
-      <find>show</find>
       <find>print</find>
+      <find>show</find>
+      <find>fsolve index</find>
+      <find>points is</find>
+      <find>loss is</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -137,12 +156,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Robot.py" />
-        <option value="$PROJECT_DIR$/data/random_nodes.npy" />
         <option value="$PROJECT_DIR$/initPos.py" />
-        <option value="$PROJECT_DIR$/robotClass.py" />
-        <option value="$PROJECT_DIR$/config.py" />
-        <option value="$PROJECT_DIR$/GROLO_localization.py" />
+        <option value="$PROJECT_DIR$/data/random_nodes.npy" />
         <option value="$PROJECT_DIR$/data/beacon_nodes.npy" />
+        <option value="$PROJECT_DIR$/GROLO_localization.py" />
+        <option value="$PROJECT_DIR$/config.py" />
+        <option value="$PROJECT_DIR$/robotClass.py" />
         <option value="$PROJECT_DIR$/formationControl.py" />
       </list>
     </option>
@@ -185,6 +204,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data/img" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -281,12 +305,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.24972737" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.1521265" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.3828452" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.36610878" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Python Console" order="0" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
@@ -316,13 +339,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/random_nodes.npy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -336,7 +352,7 @@
     <entry file="file://$PROJECT_DIR$/visualization.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
-          <caret line="19" column="12" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -350,57 +366,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/robotClass.py">
+    <entry file="file://$PROJECT_DIR$/data/random_nodes.npy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2329">
-          <caret line="108" column="12" selection-start-line="108" selection-start-column="12" selection-end-line="108" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="220">
+          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/beacon_nodes.npy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
-          <caret line="3" column="2" lean-forward="true" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GridentDescentPy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-744">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
+          <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GROLO_localization.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="119" column="57" lean-forward="true" selection-start-line="119" selection-start-column="57" selection-end-line="119" selection-end-column="57" />
+        <state relative-caret-position="198">
+          <caret line="119" column="48" selection-start-line="119" selection-start-column="48" selection-end-line="119" selection-end-column="48" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/GridentDescentPy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="46" column="40" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robotClass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2376">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/img/circle_shrink.gif">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/formationControl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="518" column="24" selection-start-line="518" selection-start-column="24" selection-end-line="518" selection-end-column="24" />
+        <state relative-caret-position="440">
+          <caret line="196" lean-forward="true" selection-start-line="196" selection-end-line="196" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
