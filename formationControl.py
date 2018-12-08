@@ -234,7 +234,7 @@ def circle_shrink(robots):
             set_neighbors(robots)
 
 
-def point_curve(list_points,points):
+def point_curve(list_points, points, curvename):
     plt.figure(1060)
     # plt.title('collision_distance constraint 1.1 \ncommunication_distance constraint 4.2\ndistance between robot[0]\'s position and coordinate origin')
     # plt.xlabel('epoch')
@@ -247,7 +247,7 @@ def point_curve(list_points,points):
     for index in range(11):
         plt.plot(list_points[:, index, 0], list_points[:, index, 1])
     plt.legend()
-    plt.savefig('init_final.pdf')
+    plt.savefig(curvename + 'init_final.pdf')
     plt.show()
 
 
@@ -347,10 +347,10 @@ def initial_and_measured_neighbor(points, robots):
 
     for i in range(robot_Num):
         for j in range(i+1, robot_Num):
-            np.random.seed(12345)
+            # np.random.seed(12345)
             tempDistance = np.sqrt((points[i][0] - points[j][0]) ** 2
                                    + (points[i][1] - points[j][1]) ** 2)
-            tempDistance = tempDistance + tempDistance * (np.random.random() * 0.02 - 0.01)  # 是否加噪声
+            tempDistance = tempDistance + tempDistance * (np.random.random() * 0.1 - 0.05)  # 是否加噪声
             if tempDistance < communication_distance:
                 robots[i].myNeighbor.append([j, tempDistance])
                 robots[j].myNeighbor.append([i, tempDistance])
@@ -364,7 +364,7 @@ def initial_and_measured_neighbor(points, robots):
 
 
 def create_formation_topology():
-    np.random.seed(6)
+    # np.random.seed(6)
     global beacon_Num
     global robot_Num
     global communication_distance
@@ -481,7 +481,6 @@ def main():
     for epoch in range(epochs):
         times = times + 1
         print('this is %d picture' % times)
-
         oldcoords = []
         for r in robots:
             oldcoords.append(r.coord)
@@ -544,6 +543,7 @@ def main():
                     real_direct = direct + np.random.random() * deltaD * 2 - deltaD
                     dx = real_velocity * np.cos(real_direct)
                     dy = real_velocity * np.sin(real_direct)
+                    # print('robot[{}] dx, dy is [{}, {}]'.format(r.id, dx, dy), np.random.random(), np.random.random())
                     points[r.id][0] = points[r.id][0] + dx
                     points[r.id][1] = points[r.id][1] + dy
                     initial_and_measured_neighbor(points, robots)
@@ -559,19 +559,19 @@ def main():
         if epoch == epochs-1:
             show_old_new(oldcoords, points)
         # if distance(robots[Beacon_3id].coord,points[Beacon_3id,:]+30/np.sqrt(2)) < (deltaH):
-        if robots[Beacon_3id].coord[0]>points[Beacon_3id, 0] + 30/np.sqrt(2) or \
-                robots[Beacon_3id].coord[1]>points[Beacon_3id,1] + 30/np.sqrt(2):
+        if robots[Beacon_3id].coord[0]>list_points[0][Beacon_3id, 0] + 30/np.sqrt(2) and \
+                robots[Beacon_3id].coord[1]>list_points[0][Beacon_3id,1] + 30/np.sqrt(2):
             show_old_new(oldcoords, points)
             break
 
     # save the move information
-    np.savetxt("error_1 percent_list_points.npy", list_points)
-    np.savetxt("error_1 percent_list_coords.npy", list_coords)
+    np.save("error_5 percent_list_points.npy", np.array(list_points))
+    np.save("error_5 percent_list_coords.npy", np.array(list_coords))
 
 
     anim(list_coords, list_points[0])
-    point_curve(list_coords, list_points[0])
-    point_curve(list_points, list_points[0])
+    point_curve(list_coords, list_points[0], "list_coords")
+    point_curve(list_points, list_points[0], "list_points")
     plt.show()
 
 
